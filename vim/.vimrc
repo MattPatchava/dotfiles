@@ -1,0 +1,60 @@
+set tabstop=4       " Number of spaces that a <Tab> in the file counts for
+set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
+set expandtab       " Converts tabs to spaces
+set number
+set timeoutlen=300 " Reduces delay when switching modes
+
+syntax enable
+filetype plugin indent on
+
+call plug#begin()
+
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+
+" General
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+
+" Rust
+Plug 'rust-lang/rust.vim'
+let g:rustfmt_autosave = 1
+
+" YAML / TOML
+Plug 'stephpy/vim-yaml'
+Plug 'cespare/vim-toml'
+
+call plug#end()
+
+let g:AutoPairsDisabledFiletypes = []
+
+if exists('$SSH_CONNECTION')
+  " ---- Remote (SSH): OSC52 ----
+  let g:clipboard = {
+        \ 'name': 'osc52',
+        \ 'copy': {
+        \    '+': 'OSCYankReg +',
+        \    '*': 'OSCYankReg *',
+        \ },
+        \ 'paste': {
+        \    '+': '',
+        \    '*': '',
+        \ },
+        \ }
+
+  if has('autocmd')
+    augroup OscYank
+      autocmd!
+      autocmd TextYankPost *
+            \ if v:event.operator is# 'y' |
+            \   silent! execute 'OSCYankReg "' . v:event.regname . '"' |
+            \ endif
+    augroup END
+  endif
+
+else
+  " ---- Local host: system clipboard ----
+  set clipboard=unnamedplus
+endif

@@ -1,5 +1,9 @@
+[shell]
+program = "/bin/bash"
+args = ["--login"]
+
 [window.dimensions]
-columns = 90
+columns = 100
 lines = 30
 
 [terminal]

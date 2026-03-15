@@ -1,20 +1,16 @@
 [window.dimensions]
-columns = 90
+columns = 100
 lines = 30
 
-[terminal]
-osc52 = "copypaste"
-
 [font]
-normal = { family = "JetBrains Mono", style = "Regular" }
+normal = { family = "Ubuntu Mono", style = "Regular" }
 size = 22 
-
-# Colors (Solarized Light)
+# Colors (Solarized Dark)
 
 # Default colors
 [colors.primary]
-background = '#fdf6e3'
-foreground = '#586e75'
+background = '#002b36'
+foreground = '#839496'
 
 # Normal colors
 [colors.normal]
@@ -37,4 +33,3 @@ blue    = '#839496'
 magenta = '#6c71c4'
 cyan    = '#93a1a1'
 white   = '#fdf6e3'
-

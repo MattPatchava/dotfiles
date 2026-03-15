@@ -26,6 +26,10 @@ let g:rustfmt_autosave = 1
 Plug 'stephpy/vim-yaml'
 Plug 'cespare/vim-toml'
 
+" Other
+Plug 'preservim/vim-markdown'
+Plug 'NoahTheDuke/vim-just'
+
 call plug#end()
 
 let g:AutoPairsDisabledFiletypes = []

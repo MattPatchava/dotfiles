@@ -1,0 +1,26 @@
+# PATH
+export PATH="/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+# Editor
+export EDITOR=vim
+
+# History
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+setopt HIST_IGNORE_DUPS
+setopt SHARE_HISTORY
+
+# Completion
+autoload -Uz compinit && compinit
+setopt AUTO_PARAM_SLASH
+zstyle ':completion:*' special-dirs true
+
+# Modern replacements
+alias ls='eza'
+alias ll='eza -la'
+alias cat='bat --style=plain --paging=never'
+alias gs='git status'
+
+# Prompt (basic — swap for starship or whatever you prefer)
+PS1='%F{green}%n@%m%f:%F{blue}%3~%f$ '

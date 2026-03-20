@@ -2,17 +2,105 @@
 # ~/.bashrc
 #
 
+# -----------------------------------------------------------------------
+# --------------------------------- OLD ---------------------------------
+# -----------------------------------------------------------------------
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias ls=eza
-alias cat='bat -pp'
-alias gs='git status'
-alias tree='erd --suppress-size --layout inverted --no-ignore --sort name'
+# alias ls='ls --color=auto'
+# alias grep='grep --color=auto'
+# alias ls=eza
+# alias cat='bat -pp'
+# alias gs='git status'
+# alias tree='erd --suppress-size --layout inverted --no-ignore --sort name'
 
-export PICO_SDK_PATH="$HOME/pico/pico-sdk"
+# export PICO_SDK_PATH="$HOME/pico/pico-sdk"
+# export LIBVIRT_DEFAULT_URI=qemu:///system
+
+# PS1='[\u@\h \W]\$ '
+
+# -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+
+
+
+
+# PATH
+export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+# virsh
 export LIBVIRT_DEFAULT_URI=qemu:///system
 
-PS1='[\u@\h \W]\$ '
+# Editor
+export EDITOR=vim
+
+# fzf
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
+
+# History
+HISTSIZE=10000
+HISTFILESIZE=10000
+HISTFILE=~/.bash_history
+HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+
+# Completion
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+# Modern replacements
+alias ls='eza'
+alias ll='eza -la'
+alias cat='bat --style=plain --paging=never'
+alias gs='git status'
+
+copy() {
+    printf "\033]52;c;%s\a" "$(base64 | tr -d '\n')"
+}
+
+alias c=copy
+
+# Detect if we're in an SSH session
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    # SSH session - use purple for user@host
+    _PS1_USERHOST='\[\e[38;5;93m\]'  # Vibrant purple
+    _PS1_PATH='\[\e[38;5;141m\]'     # Lighter purple for path (optional)
+else
+    # Local session - use green for user@host
+    _PS1_USERHOST='\[\e[32m\]'  # Green
+    _PS1_PATH='\[\e[34m\]'      # Blue
+fi
+
+_PS1_RESET='\[\e[0m\]'
+
+# Trim the working directory to last 3 components
+_short_pwd() {
+    local pwd_str="${PWD/#$HOME/\~}"
+    local depth
+    depth=$(echo "$pwd_str" | tr -cd '/' | wc -c)
+    if [ "$depth" -le 3 ]; then
+        echo "$pwd_str"
+    else
+        echo "…/$(echo "$pwd_str" | rev | cut -d'/' -f1-3 | rev)"
+    fi
+}
+
+PS1="${_PS1_USERHOST}\u@\h${_PS1_RESET}:${_PS1_PATH}\$(_short_pwd)${_PS1_RESET}\$ "
+
+# Window/tab title: user@host: dir
+case "$TERM" in
+    xterm*|rxvt*|alacritty*)
+        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: $(_short_pwd)\007"'
+        ;;
+esac
+
+# Sensible defaults
+shopt -s checkwinsize   # keep COLUMNS/LINES up to date after each command
+shopt -s cdspell        # minor typo correction for cd

@@ -7,7 +7,7 @@ osc52 = "copypaste"
 
 [font]
 normal = { family = "Iosevka Term", style = "Regular" }
-size = 22 
+size = 22
 
 # Default colors
 [colors.primary]

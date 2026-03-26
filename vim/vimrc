@@ -5,6 +5,7 @@ set number
 set timeoutlen=300 " Reduces delay when switching modes
 
 syntax enable
+packadd matchit
 filetype plugin indent on
 
 call plug#begin()
@@ -25,10 +26,6 @@ let g:rustfmt_autosave = 1
 " YAML / TOML
 Plug 'stephpy/vim-yaml'
 Plug 'cespare/vim-toml'
-
-" Other
-Plug 'preservim/vim-markdown'
-Plug 'NoahTheDuke/vim-just'
 
 call plug#end()
 

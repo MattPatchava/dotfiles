@@ -4,6 +4,9 @@ set expandtab       " Converts tabs to spaces
 set number
 set timeoutlen=300 " Reduces delay when switching modes
 
+set title
+set titlestring=%{expand('%:p')}
+
 syntax enable
 packadd matchit
 filetype plugin indent on

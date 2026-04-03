@@ -57,7 +57,7 @@ fi
 
 # Modern replacements
 alias ls='eza'
-alias ll='eza -la'
+alias ll='eza -la --group-directories-first --sort=ext'
 alias cat='bat --style=plain --paging=never'
 alias gs='git status'
 

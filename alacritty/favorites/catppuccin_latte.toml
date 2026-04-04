@@ -1,13 +1,22 @@
-[window.dimensions]
-columns = 100
-lines = 30
+# CATPPUCCIN LATTE
 
 [terminal]
 osc52 = "copypaste"
 
+[terminal.shell]
+program = "/bin/bash"
+args = ["--login"]
+
+[window.dimensions]
+columns = 100
+lines = 30
+
 [font]
-normal = { family = "JetBrains Mono", style = "Regular" }
-size = 22
+normal = { family = "Iosevka Term", style = "Regular" }
+size = 18
+
+# START COLOR SCHEME
+# -----------------------------------------------------------
 
 # Default colors
 [colors.primary]

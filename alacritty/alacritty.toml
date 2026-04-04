@@ -1,3 +1,8 @@
+# CATPPUCCIN LATTE
+
+[terminal]
+osc52 = "copypaste"
+
 [terminal.shell]
 program = "/bin/bash"
 args = ["--login"]
@@ -6,12 +11,12 @@ args = ["--login"]
 columns = 100
 lines = 30
 
-[terminal]
-osc52 = "copypaste"
-
 [font]
 normal = { family = "Iosevka Term", style = "Regular" }
 size = 18
+
+# START COLOR SCHEME
+# -----------------------------------------------------------
 
 # Default colors
 [colors.primary]

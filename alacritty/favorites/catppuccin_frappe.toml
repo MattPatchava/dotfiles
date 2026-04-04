@@ -1,13 +1,22 @@
-[window.dimensions]
-columns = 100
-lines = 30
+# CATPPUCCIN FRAPPE
 
 [terminal]
 osc52 = "copypaste"
 
+[terminal.shell]
+program = "/bin/bash"
+args = ["--login"]
+
+[window.dimensions]
+columns = 100
+lines = 30
+
 [font]
 normal = { family = "Iosevka Term", style = "Regular" }
-size = 22
+size = 18
+
+# START COLOR SCHEME
+# -----------------------------------------------------------
 
 # Default colors
 [colors.primary]

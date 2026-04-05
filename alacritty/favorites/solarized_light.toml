@@ -3,10 +3,6 @@
 [terminal]
 osc52 = "copypaste"
 
-[terminal.shell]
-program = "/bin/bash"
-args = ["--login"]
-
 [window.dimensions]
 columns = 100
 lines = 30

@@ -3,62 +3,38 @@ set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
 set expandtab       " Converts tabs to spaces
 set number
 set timeoutlen=300 " Reduces delay when switching modes
-
 set title
 set titlestring=%{expand('%:p')}
-
 syntax enable
 packadd matchit
 filetype plugin indent on
 
 call plug#begin()
-
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
-
 " General
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-
 " Rust
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
-
 " YAML / TOML
 Plug 'stephpy/vim-yaml'
 Plug 'cespare/vim-toml'
-
 call plug#end()
 
 let g:AutoPairsDisabledFiletypes = []
+set clipboard=
 
-if exists('$SSH_CONNECTION')
-  " ---- Remote (SSH): OSC52 ----
-  let g:clipboard = {
-        \ 'name': 'osc52',
-        \ 'copy': {
-        \    '+': 'OSCYankReg +',
-        \    '*': 'OSCYankReg *',
-        \ },
-        \ 'paste': {
-        \    '+': '',
-        \    '*': '',
-        \ },
-        \ }
-
-  if has('autocmd')
-    augroup OscYank
-      autocmd!
-      autocmd TextYankPost *
-            \ if v:event.operator is# 'y' |
-            \   silent! execute 'OSCYankReg "' . v:event.regname . '"' |
-            \ endif
-    augroup END
-  endif
-
-else
-  " ---- Local host: system clipboard ----
-  set clipboard=unnamedplus
+" OSC52 yank - works locally and over SSH with Alacritty
+if has('autocmd')
+  augroup OscYank
+    autocmd!
+    autocmd TextYankPost *
+          \ if v:event.operator is# 'y' && (empty(v:event.regname) || v:event.regname is# '+') |
+          \   silent! execute 'OSCYankReg "' |
+          \ endif
+  augroup END
 endif

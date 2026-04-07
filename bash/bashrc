@@ -2,32 +2,6 @@
 # ~/.bashrc
 #
 
-# -----------------------------------------------------------------------
-# --------------------------------- OLD ---------------------------------
-# -----------------------------------------------------------------------
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-# alias ls='ls --color=auto'
-# alias grep='grep --color=auto'
-# alias ls=eza
-# alias cat='bat -pp'
-# alias gs='git status'
-# alias tree='erd --suppress-size --layout inverted --no-ignore --sort name'
-
-# export PICO_SDK_PATH="$HOME/pico/pico-sdk"
-# export LIBVIRT_DEFAULT_URI=qemu:///system
-
-# PS1='[\u@\h \W]\$ '
-
-# -----------------------------------------------------------------------
-# -----------------------------------------------------------------------
-# -----------------------------------------------------------------------
-
-
-
-
 # PATH
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
@@ -57,7 +31,7 @@ fi
 
 # Modern replacements
 alias ls='eza'
-alias ll='eza -la --group-directories-first --sort=ext'
+alias ll='eza -lga --group-directories-first --sort=ext'
 alias cat='bat --style=plain --paging=never'
 alias gs='git status'
 
@@ -104,3 +78,4 @@ esac
 # Sensible defaults
 shopt -s checkwinsize   # keep COLUMNS/LINES up to date after each command
 shopt -s cdspell        # minor typo correction for cd
+. "$HOME/.cargo/env"

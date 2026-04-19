@@ -3,7 +3,7 @@
 #
 
 # PATH
-export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/bin"
+export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # virsh
 export LIBVIRT_DEFAULT_URI=qemu:///system
@@ -12,11 +12,8 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 export EDITOR=vim
 
 # fzf
-for _fzf_dir in /usr/share/fzf /usr/share/doc/fzf/examples; do
-    [ -f "$_fzf_dir/key-bindings.bash" ] && source "$_fzf_dir/key-bindings.bash"
-    [ -f "$_fzf_dir/completion.bash" ] && source "$_fzf_dir/completion.bash"
-done
-unset _fzf_dir
+source /usr/share/doc/fzf/examples/key-bindings.bash
+# source /usr/share/doc/fzf/examples/completion.zsh
 
 # History
 HISTSIZE=10000
@@ -33,10 +30,9 @@ elif [ -f /etc/bash_completion ]; then
 fi
 
 # Modern replacements
-command -v eza &>/dev/null && alias ls='eza'
-command -v eza &>/dev/null && alias ll='eza -lg --group-directories-first --sort=ext'
-command -v bat &>/dev/null && alias cat='bat --style=plain --paging=never'
-
+alias ls='eza'
+alias ll='eza -lga --group-directories-first --sort=ext'
+alias cat='bat --style=plain --paging=never'
 alias gs='git status'
 
 copy() {
@@ -45,13 +41,18 @@ copy() {
 
 alias c=copy
 
-case $(hostname) in
-    workstation)  HOST_COLOR='\[\e[38;5;39m\]' ;;    # Sky blue
-    raspberrypi)  HOST_COLOR='\[\e[31m\]' ;;         # Red
-    thinkpad)     HOST_COLOR='\[\e[38;5;213m\]' ;;   # Neon pink
-    gentoo)       HOST_COLOR='\[\e[38;5;93m\]' ;;    # Deep purple
-    *)            HOST_COLOR='\[\e[0m\]' ;;          # No color fallback
-esac
+# Detect if we're in an SSH session
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    # SSH session - use purple for user@host
+    _PS1_USERHOST='\[\e[38;5;93m\]'  # Vibrant purple
+    _PS1_PATH='\[\e[38;5;141m\]'     # Lighter purple for path (optional)
+else
+    # Local session - use green for user@host
+    _PS1_USERHOST='\[\e[32m\]'  # Green
+    _PS1_PATH='\[\e[34m\]'      # Blue
+fi
+
+_PS1_RESET='\[\e[0m\]'
 
 # Trim the working directory to last 3 components
 _short_pwd() {
@@ -65,8 +66,7 @@ _short_pwd() {
     fi
 }
 
-RESET='\[\e[0m\]'
-PS1="${HOST_COLOR}\u@\h${RESET}:\$(_short_pwd)\$ "
+PS1="${_PS1_USERHOST}\u@\h${_PS1_RESET}:${_PS1_PATH}\$(_short_pwd)${_PS1_RESET}\$ "
 
 # Window/tab title: user@host: dir
 case "$TERM" in
@@ -78,6 +78,4 @@ esac
 # Sensible defaults
 shopt -s checkwinsize   # keep COLUMNS/LINES up to date after each command
 shopt -s cdspell        # minor typo correction for cd
-
-# Package managers
-[[ ":$PATH:" != *":$HOME/.cargo/bin:"* ]] && export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"

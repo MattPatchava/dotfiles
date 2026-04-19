@@ -78,4 +78,6 @@ esac
 # Sensible defaults
 shopt -s checkwinsize   # keep COLUMNS/LINES up to date after each command
 shopt -s cdspell        # minor typo correction for cd
-. "$HOME/.cargo/env"
+
+# Package managers
+export PATH="$HOME/.cargo/bin:$PATH"

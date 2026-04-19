@@ -9,7 +9,7 @@ lines = 30
 
 [font]
 normal = { family = "Iosevka Term", style = "Regular" }
-size = 18
+size = 12
 
 # START COLOR SCHEME
 # -----------------------------------------------------------

@@ -18,7 +18,7 @@ zstyle ':completion:*' special-dirs true
 
 # Modern replacements
 alias ls='eza'
-alias ll='eza -la'
+alias ll='eza -lg --group-directories-first --sort=ext'
 alias cat='bat --style=plain --paging=never'
 alias gs='git status'
 

@@ -1,3 +1,8 @@
+# Restore sane tty settings
+if [ -n "$SSH_TTY" ]; then
+    stty sane
+fi
+
 # PATH
 export PATH="/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 
@@ -16,11 +21,30 @@ autoload -Uz compinit && compinit
 setopt AUTO_PARAM_SLASH
 zstyle ':completion:*' special-dirs true
 
+# fzf
+source /opt/local/share/fzf/shell/key-bindings.zsh
+source /opt/local/share/fzf/shell/completion.zsh
+
 # Modern replacements
 alias ls='eza'
 alias ll='eza -lg --group-directories-first --sort=ext'
 alias cat='bat --style=plain --paging=never'
 alias gs='git status'
 
-# Prompt (basic — swap for starship or whatever you prefer)
-PS1='%F{green}%n@%m%f:%F{blue}%3~%f$ '
+copy() {
+    printf "\033]52;c;%s\a" "$(base64 | tr -d '\n')"
+}
+alias c=copy
+
+# Prompt - purple when SSH, green when local
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    PS1='%F{93}%n@%m%f:%F{141}%3~%f$ '
+else
+    PS1='%F{green}%n@%m%f:%F{blue}%3~%f$ '
+fi
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/opt/local/lib/ImageMagick7/bin:$PATH"
+
+# Package managers
+export PATH="$HOME/.cargo/bin:$PATH"

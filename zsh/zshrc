@@ -39,12 +39,7 @@ copy() {
 }
 alias c=copy
 
-# Prompt - purple when SSH, green when local
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    PS1='%F{93}%n@%m%f:%F{141}%3~%f$ '
-else
-    PS1='%F{green}%n@%m%f:%F{blue}%3~%f$ '
-fi
+PS1='%F{22}%n@%m%f:%F{blue}%3~%f$ '
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/local/lib/ImageMagick7/bin:$PATH"

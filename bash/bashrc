@@ -48,7 +48,10 @@ alias c=copy
 case $(hostname) in
     workstation)  HOST_COLOR='\[\e[38;5;39m\]' ;;    # Sky blue
     raspberrypi)  HOST_COLOR='\[\e[31m\]' ;;         # Red
-    thinkpad)     HOST_COLOR='\[\e[38;5;213m\]' ;;   # Neon pink
+
+    # antix1)  HOST_COLOR='\[\e[38;5;166m\]' ;;   # Burnt orange
+    antix1)  HOST_COLOR='\[\e[38;5;30m\]' ;;    # Dark teal
+
     gentoo)       HOST_COLOR='\[\e[38;5;93m\]' ;;    # Deep purple
     *)            HOST_COLOR='\[\e[0m\]' ;;          # No color fallback
 esac

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="My_OOo_Macros" script:language="StarBasic">REM  *****  BASIC  *****
+
+Sub ToggleInlineCode()
+    Dim oDoc As Object
+    Dim oController As Object
+    Dim oViewCursor As Object
+    Dim oSel As Object
+    Dim oRange As Object
+    Dim oSelCursor As Object
+    Dim sCurrentStyle As String
+
+    oDoc = ThisComponent
+    oController = oDoc.getCurrentController()
+    oViewCursor = oController.getViewCursor()
+    oSel = oController.getSelection()
+
+    If oSel.getCount() &gt; 0 Then
+        oRange = oSel.getByIndex(0)
+
+        If oRange.getString() &lt;&gt; &quot;&quot; Then
+            oSelCursor = oDoc.getText().createTextCursorByRange(oRange)
+            sCurrentStyle = oSelCursor.getPropertyValue(&quot;CharStyleName&quot;)
+            If sCurrentStyle = &quot;Source Text&quot; Then
+                oSelCursor.setPropertyToDefault(&quot;CharStyleName&quot;)
+            Else
+                oSelCursor.setPropertyValue(&quot;CharStyleName&quot;, &quot;Source Text&quot;)
+            End If
+        Else
+            sCurrentStyle = oViewCursor.getPropertyValue(&quot;CharStyleName&quot;)
+            If sCurrentStyle = &quot;Source Text&quot; Then
+                oViewCursor.setPropertyToDefault(&quot;CharStyleName&quot;)
+            Else
+                oViewCursor.setPropertyValue(&quot;CharStyleName&quot;, &quot;Source Text&quot;)
+            End If
+        End If
+    End If
+End Sub
+
+Sub DeleteWordBeforeKeepSpace()
+    Dim oDoc As Object
+    Dim oCursor As Object
+    
+    oDoc = ThisComponent
+    oCursor = oDoc.getCurrentController().getViewCursor()
+    
+    Dim oTC As Object
+    oTC = oDoc.getText().createTextCursorByRange(oCursor)
+    
+    &apos; Select from start of word to current position
+    oTC.gotoStartOfWord(True)
+    
+    &apos; Only delete if we selected something
+    If Len(oTC.getString()) &gt; 0 Then
+        oTC.setString(&quot;&quot;)
+    End If
+End Sub
+</script:module>

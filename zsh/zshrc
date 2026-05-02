@@ -39,7 +39,8 @@ copy() {
 }
 alias c=copy
 
-PS1='%F{22}%n@%m%f:%F{blue}%3~%f$ '
+PS1='%F{22}%n@%m%f:%F{blue}%3~%f$ '       # Regular
+# PS1='%B%F{22}%n@%m%f%b:%F{blue}%3~%f$ '   # Bold
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/local/lib/ImageMagick7/bin:$PATH"

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+file="$1"
+tmp=$(mktemp)
+
+sed \
+    -e 's/<font face="monospace">/<pre><font face="monospace">/' \
+    -e 's/&nbsp;/ /g' \
+    -e 's/<br>//g' \
+    "$file" \
+    | perl -0777 -pe 's|<pre><font face="monospace">\n|<pre><font face="monospace">|;
+                      s|\n</font>\n</body>|</font></pre>\n</body>|' \
+    > "$tmp"
+
+mv "$tmp" "$file"

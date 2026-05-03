@@ -9,6 +9,18 @@ syntax enable
 packadd matchit
 filetype plugin indent on
 
+let g:html_use_css = 0
+
+command! ToHtmlClean
+    \ set nonumber |
+    \ TOhtml |
+    \ set number |
+    \ let s:f = expand('%:p') |
+    \ w |
+    \ exe '!fix_html ' . shellescape(s:f, 1) |
+    \ exe '!firefox ' . shellescape(s:f, 1) |
+    \ bd
+
 call plug#begin()
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " General

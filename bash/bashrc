@@ -35,7 +35,19 @@ fi
 # Modern replacements
 command -v eza &>/dev/null && alias ls='eza'
 command -v eza &>/dev/null && alias ll='eza -lg --group-directories-first --sort=ext'
-command -v bat &>/dev/null && alias cat='bat --style=plain --paging=never'
+
+if command -v bat &>/dev/null; then
+    unalias cat 2>/dev/null
+    function cat {
+        if [[ "$1" == /proc/* ]]; then
+            bat -A --style=plain --paging=never "$@"
+        elif [[ "$1" == /sys/* || "$1" == /run/* || "$1" == /dev/* ]]; then
+            command cat "$@"
+        else
+            bat --style=plain --paging=never "$@"
+        fi
+    }
+fi
 
 alias gs='git status'
 

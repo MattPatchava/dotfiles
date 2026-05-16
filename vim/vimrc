@@ -2,6 +2,7 @@ set tabstop=4       " Number of spaces that a <Tab> in the file counts for
 set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
 set expandtab       " Converts tabs to spaces
 set number
+set nohlsearch
 set timeoutlen=300 " Reduces delay when switching modes
 set title
 set titlestring=%{expand('%:p')}

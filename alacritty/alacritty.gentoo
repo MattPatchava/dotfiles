@@ -3,6 +3,9 @@
 [terminal]
 osc52 = "copypaste"
 
+[scrolling]
+multiplier = 5
+
 [window.dimensions]
 columns = 100
 lines = 30

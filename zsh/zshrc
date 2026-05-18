@@ -39,6 +39,10 @@ copy() {
 }
 alias c=copy
 
+rdp-ws() {
+  xfreerdp /v:ws /f /dynamic-resolution +clipboard /cert:ignore "$@"
+}
+
 PS1='%F{22}%n@%m%f:%F{blue}%3~%f$ '       # Regular
 # PS1='%B%F{22}%n@%m%f%b:%F{blue}%3~%f$ '   # Bold
 

@@ -20,24 +20,21 @@ set $menu wmenu-run
 
 exec gentoo-pipewire-launcher restart
 exec conky
+xwayland enable
 
-seat * xcursor_theme whiteglass 64
-output eDP-1 scale 2
-
-bindsym --locked XF86LaunchA exec brightnessctl --device=kbd_backlight set 5%-
-bindsym --locked XF86Search exec brightnessctl --device=kbd_backlight set 5%+
-
+seat * xcursor_theme whiteglass 28
 bindsym Ctrl+Alt+l exec swaylock -f -c 1a1a2e
 bindsym $mod+Tab workspace back_and_forth
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/mattpatchava/wallpapers/elephant.png fill
+output * bg /home/mattpatchava/Pictures/wallpapers/deers.jpeg fill
 #
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
+output DP-2 mode 2560x1440@179.998Hz
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -64,6 +61,9 @@ output * bg /home/mattpatchava/wallpapers/elephant.png fill
 #       natural_scroll enabled
 #       middle_emulation enabled
 #   }
+input type:pointer {
+    natural_scroll enabled
+}
 
 input "type:touchpad" {
     accel_profile adaptive
@@ -144,16 +144,34 @@ input "type:touchpad" {
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
+
+    # bindsym $mod+Shift+1 move container to workspace number 1
+    # bindsym $mod+Shift+2 move container to workspace number 2
+    # bindsym $mod+Shift+3 move container to workspace number 3
+    # bindsym $mod+Shift+4 move container to workspace number 4
+    # bindsym $mod+Shift+5 move container to workspace number 5
+    # bindsym $mod+Shift+6 move container to workspace number 6
+    # bindsym $mod+Shift+7 move container to workspace number 7
+    # bindsym $mod+Shift+8 move container to workspace number 8
+    # bindsym $mod+Shift+9 move container to workspace number 9
+    # bindsym $mod+Shift+0 move container to workspace number 10
+
+    # Move container to workspace and follow
+    bindsym $mod+Shift+1 move container to workspace number 1, workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2, workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3, workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4, workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5, workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6, workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7, workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8, workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9, workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10, workspace number 10
+
+    # Move container to adjacent workspace and follow
+    bindsym $mod+Shift+Ctrl+Right move container to workspace next, workspace next
+    bindsym $mod+Shift+Ctrl+Left  move container to workspace prev, workspace prev
+
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -224,9 +242,10 @@ bindsym $mod+r mode "resize"
     bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && pkill -SIGRTMIN+10 i3status-rs
     bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && pkill -SIGRTMIN+10 i3status-rs
     bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && pkill -SIGRTMIN+10 i3status-rs
-    # Special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 1%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 1%+
+    # Special keys to adjust brightness via ddcutil
+    bindsym --locked XF86MonBrightnessDown exec ddcutil --bus 4 setvcp 10 - 1
+    bindsym --locked XF86MonBrightnessUp exec ddcutil --bus 4 setvcp 10 + 1
+
     # Special key to take a screenshot with grim
     bindsym Print exec grim
 

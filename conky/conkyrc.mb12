@@ -1,0 +1,65 @@
+conky.config = {
+    background = true,
+    short_units = true,
+    cpu_avg_samples = 2,
+    net_avg_samples = 2,
+    out_to_console = false,
+    out_to_x = false,
+    out_to_wayland = true,
+    font = 'DejaVu Sans:bold:size=9',
+    update_interval = 1,
+    minimum_width = 55,
+    maximum_width = 180,
+    draw_shades = false,
+    draw_outline = false,
+    draw_borders = false,
+    stippled_borders = 0,
+    border_width = 2,
+    default_color = 'ffffff',
+    default_shade_color = 'ffffff',
+    default_outline_color = 'ffffff',
+    color4 = 'ffff00',
+    color8 = '77ccff',
+    color9 = '5599cc',
+    alignment = 'top_right',
+    gap_x = 20,
+    gap_y = 20,
+    use_spacer = 'right',
+    no_buffers = true,
+    if_up_strictness = 'address',
+    uppercase = false,
+}
+
+conky.text = [[
+${alignc}${nodename}
+${alignc}${color8}${font DejaVu Sans:size=12}${time %H:%M}${font}${color}
+${alignc}${time %a %d %b}
+${alignc}Uptime: $uptime
+res:${alignr}${execi 60 xdpyinfo 2>/dev/null | awk '/dimensions/{print $2}'}
+dpi:${alignr}${execi 60 xdpyinfo 2>/dev/null | awk '/resolution/{gsub(/x.*/,"",$2); print $2}'}
+Init:${alignr}${execi 60 ps -p 1 -o comm=}
+CPU:${alignr}${cpu}%
+Freq:${alignr}${freq} MHz
+${alignr}${cpugraph cpu0 30,170 5599cc 5599cc}
+CPU Temp:${alignr}${execi 5 sensors coretemp-isa-0000 2>/dev/null | awk '/Package id 0/{gsub(/\+/,"",$4); print $4}'}
+CPU Fan:${alignr}${execi 5 sensors applesmc-isa-0300 2>/dev/null | awk '/Exhaust/{print $3, "RPM"}'}
+TG1D:${alignr}${execi 5 sensors applesmc-isa-0300 2>/dev/null | awk '/TG1D/{gsub(/\+/,"",$2); print $2}'}
+Disk I/O:${alignr}${diskio}
+${alignr}${diskiograph 30,170 5599cc 5599cc}
+${if_up eth0}eth0 up:${alignr}${upspeed eth0}
+${alignr}${upspeedgraph eth0 30,170 5599cc 5599cc}
+eth0 dn:${alignr}${downspeed eth0}
+${alignr}${downspeedgraph eth0 30,170 5599cc 5599cc}${endif}
+${if_up ens18}ens18 up:${alignr}${upspeed ens18}
+${alignr}${upspeedgraph ens18 30,170 5599cc 5599cc}
+ens18 dn:${alignr}${downspeed ens18}
+${alignr}${downspeedgraph ens18 30,170 5599cc 5599cc}${endif}
+${if_up wlan0}wlan0 up:${alignr}${upspeed wlan0}
+${alignr}${upspeedgraph wlan0 30,170 5599cc 5599cc}
+wlan0 dn:${alignr}${downspeed wlan0}
+${alignr}${downspeedgraph wlan0 30,170 5599cc 5599cc}${endif}
+${color8}${alignr}Used / Total${color}
+RAM:${alignr}$mem / $memmax
+Swap:${alignr}$swap / $swapmax
+/ Disk:${alignr}${fs_used /} / ${fs_size /}
+]]

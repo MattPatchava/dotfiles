@@ -66,8 +66,10 @@ output * bg /home/mattpatchava/wallpapers/elephant.png fill
 #   }
 
 input "type:touchpad" {
+    tap disabled
+    dwt enabled
     accel_profile adaptive
-    pointer_accel 0.2
+    pointer_accel 0.05
     scroll_factor 0.5
 }
 

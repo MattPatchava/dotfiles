@@ -1,0 +1,178 @@
+# i3 config file (v4)
+# Converted from sway config.
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+include colors.conf
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod1
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# Your preferred terminal emulator
+set $term st
+# Your preferred application launcher
+set $menu dmenu-run
+
+exec --no-startup-id conky
+
+bindsym $mod+period exec fuzzmoji
+
+bindsym $mod+Tab workspace back_and_forth
+
+# Screenshots (scrot/maim instead of grim/slurp; adjust to taste)
+# 'screenshot' is a custom wrapper script -- replace with your preferred tool
+bindsym F5            exec --no-startup-id screenshot screen
+bindsym Shift+F5      exec --no-startup-id screenshot area
+bindsym Ctrl+F5       exec --no-startup-id screenshot window
+bindsym Shift+Ctrl+F5 exec --no-startup-id screenshot clip
+bindsym Print         exec --no-startup-id scrot
+
+# Wallpaper (feh instead of sway output bg)
+exec --no-startup-id feh --bg-fill /home/mattpatchava/wallpapers/closeup-shot-cat-playing-orange-series-light-dark.png
+
+# NOTE: swayidle has no direct i3 equivalent. Use xss-lock + i3lock for
+# screen locking on idle/suspend:
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 1a1a2e --nofork
+
+# Keyboard layout (setxkbmap instead of input type:keyboard)
+exec --no-startup-id setxkbmap -layout us,ru -option grp:shift_caps_toggle
+
+# NOTE: input type:touchpad config is sway-only (libinput via sway).
+# On X11, configure libinput or synaptics via /etc/X11/xorg.conf.d/.
+
+# Font for window titles and bar
+font pango:monospace 12
+
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec --no-startup-id rofi -show drun
+    # NOTE: fuzzel is Wayland-only. Consider rofi or dmenu as X11 alternatives:
+    # bindsym $mod+d exec --no-startup-id rofi -modi drun,run -show drun
+
+    # Drag floating windows by holding $mod and left mouse button.
+    floating_modifier $mod
+
+    # NOTE: i3 does not support "tiling_drag modifier titlebar" style config
+    # from newer sway. Floating modifier covers the common case.
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # Restart i3 inplace (preserves layout/session)
+    bindsym $mod+Shift+r restart
+
+    # Exit i3
+    bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+#
+# Moving around:
+#
+    # Focus
+    bindsym $mod+$left  focus left
+    bindsym $mod+$down  focus down
+    bindsym $mod+$up    focus up
+    bindsym $mod+$right focus right
+
+    bindsym $mod+Left  focus left
+    bindsym $mod+Down  focus down
+    bindsym $mod+Up    focus up
+    bindsym $mod+Right focus right
+
+#
+# Workspaces:
+#
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+
+    # Move container to workspace and follow
+    # NOTE: i3 does not support the comma-chained "move + switch" syntax from sway.
+    # The closest equivalent is two separate bindsym actions, which i3 doesn't
+    # support natively. The standard approach is a small i3-msg script:
+    bindsym $mod+Shift+1 exec --no-startup-id i3-msg "move container to workspace number 1" && i3-msg "workspace number 1"
+    bindsym $mod+Shift+2 exec --no-startup-id i3-msg "move container to workspace number 2" && i3-msg "workspace number 2"
+    bindsym $mod+Shift+3 exec --no-startup-id i3-msg "move container to workspace number 3" && i3-msg "workspace number 3"
+    bindsym $mod+Shift+4 exec --no-startup-id i3-msg "move container to workspace number 4" && i3-msg "workspace number 4"
+    bindsym $mod+Shift+5 exec --no-startup-id i3-msg "move container to workspace number 5" && i3-msg "workspace number 5"
+    bindsym $mod+Shift+6 exec --no-startup-id i3-msg "move container to workspace number 6" && i3-msg "workspace number 6"
+    bindsym $mod+Shift+7 exec --no-startup-id i3-msg "move container to workspace number 7" && i3-msg "workspace number 7"
+    bindsym $mod+Shift+8 exec --no-startup-id i3-msg "move container to workspace number 8" && i3-msg "workspace number 8"
+    bindsym $mod+Shift+9 exec --no-startup-id i3-msg "move container to workspace number 9" && i3-msg "workspace number 9"
+    bindsym $mod+Shift+0 exec --no-startup-id i3-msg "move container to workspace number 10" && i3-msg "workspace number 10"
+
+#
+# Layout stuff:
+#
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    bindsym $mod+f fullscreen toggle
+
+    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+space focus mode_toggle
+    bindsym $mod+a focus parent
+
+#
+# Scratchpad:
+#
+    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+minus scratchpad show
+
+#
+# Resizing containers:
+#
+mode "resize" {
+    bindsym $left  resize shrink width 10 px or 10 ppt
+    bindsym $down  resize grow height 10 px or 10 ppt
+    bindsym $up    resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow width 10 px or 10 ppt
+
+    bindsym Left  resize shrink width 10 px or 10 ppt
+    bindsym Down  resize grow height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+#
+# Utilities:
+#
+    # Volume via wpctl (works on X11 with PipeWire/WirePlumber)
+    # NOTE: i3status-rs SIGRTMIN+10 refresh also works on X11 with i3status-rs
+    bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && pkill -SIGRTMIN+10 i3status-rs
+    bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && pkill -SIGRTMIN+10 i3status-rs
+    bindsym XF86AudioMute        exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && pkill -SIGRTMIN+10 i3status-rs
+
+    # Brightness
+    bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 1%-
+    bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set 1%+

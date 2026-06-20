@@ -29,7 +29,7 @@ xftfont DejaVu Sans:bold:size=9
 
 # Create own window instead of using desktop (required in nautilus, pcmanfm and rox desktops)
 own_window yes
-own_window_type desktop
+own_window_type override
 own_window_transparent yes
 own_window_argb_visual yes
 own_window_argb_value 0
@@ -69,12 +69,12 @@ stippled_borders 0
 border_width 2
 
 # Default colors and also border colors
-default_color white
-default_shade_color white
-default_outline_color white
+default_color ffffff
+default_shade_color ffffff
+default_outline_color ffffff
 
 #color ffffff
-color4 yellow
+color4 ffff00
 color8 77ccff
 color9 5599cc
 

@@ -1,0 +1,64 @@
+set tabstop=4       " Number of spaces that a <Tab> in the file counts for
+set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
+set expandtab       " Converts tabs to spaces
+set number
+set nohlsearch
+set timeoutlen=300 " Reduces delay when switching modes
+set title
+set titlestring=%{expand('%:p')}
+syntax enable
+packadd matchit
+filetype plugin indent on
+
+let g:html_use_css = 0
+
+command! ToHtmlClean
+    \ set nonumber |
+    \ TOhtml |
+    \ set number |
+    \ let s:f = expand('%:p') |
+    \ w |
+    \ exe '!fix_html ' . shellescape(s:f, 1) |
+    \ exe '!firefox ' . shellescape(s:f, 1) |
+    \ bd
+
+call plug#begin()
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+" General
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+" C / C++
+Plug 'bfrg/vim-cpp-modern'
+" Rust
+Plug 'rust-lang/rust.vim'
+let g:rustfmt_autosave = 1
+" Markup/config
+Plug 'stephpy/vim-yaml'
+Plug 'cespare/vim-toml'
+Plug 'preservim/vim-markdown'
+call plug#end()
+
+let g:AutoPairsDisabledFiletypes = []
+
+" OSC52 yank - works locally and over SSH
+if has('autocmd')
+  augroup OscYank
+    autocmd!
+    autocmd TextYankPost *
+          \ if v:event.operator is# 'y' && (empty(v:event.regname) || v:event.regname is# '+') |
+          \   silent! execute 'OSCYankReg +' |
+          \ endif
+  augroup END
+endif
+
+" let g:clipboard = {
+"   \ 'name': 'wl-clipboard',
+"   \ 'copy':  {'+': ['wl-copy'], '*': ['wl-copy', '--primary']},
+"   \ 'paste': {'+': ['wl-paste', '--no-newline'], '*': ['wl-paste', '--no-newline', '--primary']},
+"   \ 'cache_enabled': 0,
+"   \ }
+
+" set clipboard=unnamedplus

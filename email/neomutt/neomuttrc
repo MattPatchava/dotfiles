@@ -1,0 +1,14 @@
+# ~/.config/neomutt/neomuttrc
+
+set realname = "Matt Patchava"
+set from = "mattpatchava@posteo.com"
+
+set mbox_type = Maildir
+set folder = ~/Mail
+set spoolfile = ~/Mail/INBOX
+set record = =Sent
+set postponed = =Drafts
+set copy = yes
+
+set sort = threads
+set sort_aux = reverse-last-date-received

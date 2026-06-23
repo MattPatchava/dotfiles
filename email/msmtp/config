@@ -1,0 +1,16 @@
+# ~/.config/msmtp/config
+
+defaults
+auth on
+tls  on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile ~/.config/msmtp/msmtp.log
+
+account posteo
+host posteo.de
+port 587
+from mattpatchava@posteo.com
+user mattpatchava@posteo.com
+passwordeval gpg --quiet --decrypt ~/.mail-passwd.gpg
+
+account default : posteo

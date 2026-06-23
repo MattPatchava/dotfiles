@@ -1,0 +1,3 @@
+The layout of the config files and subdirectories under this directory mirror the structure in which they are expected by their respective applications when looking under /home/$USER.
+
+The mbsync (IMAP) and msmtp (SMTP) config files point to ~/.mail-passwd.gpg containing the password for sending mail and syncing with the mail server. You may want to update this.

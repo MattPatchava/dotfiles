@@ -1,0 +1,24 @@
+# ~/.mbsyncrc
+
+IMAPAccount posteo
+Host posteo.de
+Port 993
+User mattpatchava@posteo.com
+PassCmd "gpg --quiet --decrypt ~/.mail-passwd.gpg"
+TLSType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore posteo-remote
+Account posteo
+
+MaildirStore posteo-local
+Path ~/Mail/
+Inbox ~/Mail/INBOX
+
+Channel posteo
+Far   :posteo-remote:
+Near  :posteo-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *

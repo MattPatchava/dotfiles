@@ -10,6 +10,7 @@ Sub ToggleInlineCode()
     Dim oRange As Object
     Dim oSelCursor As Object
     Dim sCurrentStyle As String
+    Dim fBaseFontSize As Single
 
     oDoc = ThisComponent
     oController = oDoc.getCurrentController()
@@ -24,15 +25,25 @@ Sub ToggleInlineCode()
             sCurrentStyle = oSelCursor.getPropertyValue(&quot;CharStyleName&quot;)
             If sCurrentStyle = &quot;Source Text&quot; Then
                 oSelCursor.setPropertyToDefault(&quot;CharStyleName&quot;)
+                oSelCursor.setPropertyToDefault(&quot;CharHeight&quot;)
             Else
+                fBaseFontSize = oSelCursor.getPropertyValue(&quot;CharHeight&quot;)
                 oSelCursor.setPropertyValue(&quot;CharStyleName&quot;, &quot;Source Text&quot;)
+                If fBaseFontSize &gt; 0 Then
+                    oSelCursor.setPropertyValue(&quot;CharHeight&quot;, fBaseFontSize * 5.0 / 6.0)
+                End If
             End If
         Else
             sCurrentStyle = oViewCursor.getPropertyValue(&quot;CharStyleName&quot;)
             If sCurrentStyle = &quot;Source Text&quot; Then
                 oViewCursor.setPropertyToDefault(&quot;CharStyleName&quot;)
+                oViewCursor.setPropertyToDefault(&quot;CharHeight&quot;)
             Else
+                fBaseFontSize = oViewCursor.getPropertyValue(&quot;CharHeight&quot;)
                 oViewCursor.setPropertyValue(&quot;CharStyleName&quot;, &quot;Source Text&quot;)
+                If fBaseFontSize &gt; 0 Then
+                    oViewCursor.setPropertyValue(&quot;CharHeight&quot;, fBaseFontSize * 5.0 / 6.0)
+                End If
             End If
         End If
     End If

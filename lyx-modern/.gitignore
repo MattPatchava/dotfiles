@@ -1,0 +1,8 @@
+configure.log
+lastfiles
+lyxrc.defaults
+session
+*.lst
+.lyx_configure_lock
+
+cache/

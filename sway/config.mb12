@@ -73,10 +73,10 @@ input "type:touchpad" {
     scroll_factor 0.5
 }
 
-#
-#   input type:keyboard {
-#       xkb_layout "eu"
-#   }
+input type:keyboard {
+  xkb_layout "us,ru"
+  xkb_options grp:alt_shift_toggle
+}
 #
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.

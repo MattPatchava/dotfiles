@@ -30,6 +30,11 @@ bindsym --locked XF86Search exec brightnessctl --device=kbd_backlight set 5%+
 bindsym Ctrl+Alt+l exec swaylock -f -c 1a1a2e
 bindsym $mod+Tab workspace back_and_forth
 
+bindsym F5            exec screenshot screen
+bindsym Shift+F5      exec screenshot area
+bindsym Ctrl+F5       exec screenshot window
+bindsym Shift+Ctrl+F5 exec screenshot clip
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)

@@ -50,6 +50,7 @@ if command -v bat &>/dev/null; then
 fi
 
 alias gs='git status'
+alias gdb='gdb -q'
 
 copy() {
     printf "\033]52;c;%s\a" "$(base64 | tr -d '\n')"

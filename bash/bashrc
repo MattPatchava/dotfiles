@@ -33,6 +33,14 @@ elif [ -f /etc/bash_completion ]; then
 fi
 
 # Modern replacements
+glow() {
+    if [ -n "$TMUX" ]; then
+        TERM=xterm-256color command glow "$@"
+    else
+        command glow "$@"
+    fi
+}
+
 command -v eza &>/dev/null && alias ls='eza'
 command -v eza &>/dev/null && alias ll='eza -lg --group-directories-first --sort=ext'
 

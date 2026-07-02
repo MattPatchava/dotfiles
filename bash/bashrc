@@ -96,3 +96,4 @@ shopt -s cdspell        # minor typo correction for cd
 
 # Package managers
 [[ ":$PATH:" != *":$HOME/.cargo/bin:"* ]] && export PATH="$HOME/.cargo/bin:$PATH"
+export PATH=/usr/local/xforms-1.0.90/bin:$PATH

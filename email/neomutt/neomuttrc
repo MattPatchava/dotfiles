@@ -3,6 +3,7 @@
 set realname = "Matt Patchava"
 set from = "mattpatchava@posteo.com"
 
+set sendmail = "/usr/bin/msmtp -a default"
 set mbox_type = Maildir
 set folder = ~/Mail
 set spoolfile = ~/Mail/INBOX

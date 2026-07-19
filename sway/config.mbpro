@@ -18,6 +18,10 @@ set $term foot
 # Your preferred application launcher
 set $menu wmenu-run
 
+titlebar_padding 6 6
+font pango:Terminus 16
+# default_border pixel 2
+
 exec gentoo-pipewire-launcher restart
 exec conky
 
@@ -264,6 +268,7 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
+    height 30
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.

@@ -1,3 +1,13 @@
+include themes/catppuccin-frappe
+
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
+
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -18,9 +28,13 @@ set $term foot
 # Your preferred application launcher
 set $menu wmenu-run
 
+xwayland enable
 exec gentoo-pipewire-launcher restart
 exec conky
-xwayland enable
+exec wl-paste --watch cliphist store
+
+titlebar_padding 8 8
+font pango:Terminus (TTF) 20
 
 seat * xcursor_theme whiteglass 28
 bindsym Ctrl+Alt+l exec swaylock -f -c 1a1a2e
@@ -29,12 +43,12 @@ bindsym $mod+Tab workspace back_and_forth
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/mattpatchava/Pictures/wallpapers/deers.jpeg fill
+output * bg /home/mattpatchava/images/wallpapers/positive.jpg fill
 #
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
-output DP-2 mode 2560x1440@179.998Hz
+output DP-3 mode 2560x1440@179.998Hz
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -262,11 +276,25 @@ bar {
     #status_command while date +'%Y-%m-%d %X'; do sleep 1; done
     status_command i3status-rs
 
+    # Catppuccin colors
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+      background         $base
+      statusline         $text
+      focused_statusline $text
+      focused_separator  $base
+      # target           border bg        text
+      focused_workspace  $base  $mauve    $crust
+      active_workspace   $base  $surface2 $text
+      inactive_workspace $base  $base     $text
+      urgent_workspace   $base  $red      $crust
     }
+
+    # Default colors
+    # colors {
+    #     statusline #ffffff
+    #     background #323232
+    #     inactive_workspace #32323200 #32323200 #5c5c5c
+    # }
 }
 
 include /etc/sway/config.d/*

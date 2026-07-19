@@ -69,7 +69,7 @@ alias c=copy
 
 case $(hostname) in
     caitlinbarker-MacBookPro9-2)  HOST_COLOR='\[\e[38;5;198m\]' ;;    # Hot pink
-    workstation)  HOST_COLOR='\[\e[38;5;39m\]' ;;                     # Sky blue
+    ferris)       HOST_COLOR='\[\e[1;38;5;28m\]' ;;                   # Sky blue
     raspberrypi)  HOST_COLOR='\[\e[31m\]' ;;                          # Red
     t42)          HOST_COLOR='\[\e[38;5;30m\]' ;;                     # Dark teal
     gentoo)       HOST_COLOR='\[\e[38;5;93m\]' ;;                     # Deep purple

@@ -4,6 +4,7 @@
 
 # PATH
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/bin"
+export MANPATH="$HOME/.local/share/man:$MANPATH"
 
 # virsh
 export LIBVIRT_DEFAULT_URI=qemu:///system

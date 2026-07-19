@@ -1,0 +1,31 @@
+###### file /home/mattpatchava/.lyx/preferences.xform
+### This file is written by LyX, if you want to make your own
+### modifications you should do them from inside LyX and save
+
+#
+# Catppuccin Latte
+#
+\gui_background 239 241 245
+\gui_buttonbottom 220 224 232
+\gui_buttonleft 220 224 232
+\gui_buttonright 204 208 218
+\gui_buttontop 230 233 239
+\gui_inactive 156 160 176
+\gui_pointer 137 148 223
+\gui_push_button 223 218 196
+\gui_selected 172 176 190
+\gui_text 76 79 105
+
+#
+# Catppuccin Mocha
+#
+# \gui_background 30 30 46
+# \gui_buttonbottom 49 50 68
+# \gui_buttonleft 49 50 68
+# \gui_buttonright 24 24 37
+# \gui_buttontop 69 71 90
+# \gui_inactive 108 112 134
+# \gui_pointer 108 113 196
+# \gui_push_button 249 226 175
+# \gui_selected 88 91 112
+# \gui_text 205 214 244

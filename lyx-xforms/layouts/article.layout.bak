@@ -1,0 +1,17 @@
+# Custom layout for article with inline code style
+Input article.layout
+
+CharStyle Code
+  LatexType Command
+  LatexName code
+  Font
+    Family Typewriter
+  EndFont
+  LabelFont
+    Family Roman
+    Color blue
+  EndFont
+  Preamble
+    \newcommand{\code}[1]{\texttt{#1}}
+  EndPreamble
+End

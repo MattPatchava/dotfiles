@@ -1,0 +1,104 @@
+### This file is part of
+### ========================================================
+###          LyX, The Document Processor
+###
+###          Copyright 1995 Matthias Ettrich
+###          Copyright 1995-2001 The LyX Team.
+###
+### ========================================================
+
+# This file is written by LyX, if you want to make your own
+# modifications you should do them from inside LyX and save
+
+\bind_file "user"
+
+#
+# MISC SECTION ######################################
+#
+
+\user_name "mattpatchava"
+\user_email "mattpatchava@posteo.com"
+
+#
+# SCREEN & FONTS SECTION ############################
+#
+
+\popup_font_encoding "iso8859-1"
+\screen_font_roman_foundry "adobe"
+\screen_font_typewriter "terminus"
+\screen_font_scalable false
+\screen_font_encoding "iso10646-1"
+\screen_font_sizes 8.0 8.0 10.0 10.0 12.0 14.0 17.0 18.0 20.0 24.0
+
+#
+# COLOR SECTION ###################################
+#
+
+\set_color "cursor" "#cb4b16"
+\set_color "background" "#fdf6e3"
+\set_color "foreground" "#000000"
+\set_color "selection" "#eee8d5"
+\set_color "notebg" "#b58900"
+\set_color "greyedoutbg" "#eee8d5"
+\set_color "mathbg" "#eee8d5"
+\set_color "mathframe" "#268bd2"
+\set_color "insetbg" "#eee8d5"
+\set_color "insetframe" "#268bd2"
+
+#
+# PRINTER SECTION ###################################
+#
+
+\print_to_file "-o"
+
+#
+# EXPORT SECTION ####################################
+#
+
+
+#
+# TEX SECTION #######################################
+#
+
+
+#
+# FILE SECTION ######################################
+#
+
+
+#
+# ASCII EXPORT SECTION ##############################
+#
+
+
+#
+# SPELLCHECKER SECTION ##############################
+#
+
+\spell_command "ispell"
+
+#
+# LANGUAGE SUPPORT SECTION ##########################
+#
+
+
+#
+# 2nd MISC SUPPORT SECTION ##########################
+#
+
+
+#
+# FORMATS SECTION ##########################
+#
+
+\format "pdf2" "pdf" "PDF (pdflatex)" "F" "mupdf" "" "vector"
+
+#
+# CONVERTERS SECTION ##########################
+#
+
+
+#
+# COPIERS SECTION ##########################
+#
+

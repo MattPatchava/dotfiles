@@ -52,7 +52,7 @@ exec --no-startup-id setxkbmap -layout us,ru -option grp:shift_caps_toggle
 # On X11, configure libinput or synaptics via /etc/X11/xorg.conf.d/.
 
 # Font for window titles and bar
-font pango:monospace 12
+font pango:Terminus (TTF),monospace 16
 
 ### Key bindings
 #

@@ -36,6 +36,7 @@
 
 \set_color "cursor" "#cb4b16"
 \set_color "background" "#fdf6e3"
+\set_color "bottomarea" "#fdf6e3"
 \set_color "foreground" "#000000"
 \set_color "selection" "#eee8d5"
 \set_color "notebg" "#b58900"

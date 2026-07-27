@@ -76,7 +76,7 @@
 # SPELLCHECKER SECTION ##############################
 #
 
-\spell_command "ispell"
+\spell_command "aspell"
 
 #
 # LANGUAGE SUPPORT SECTION ##########################

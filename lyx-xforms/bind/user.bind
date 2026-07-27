@@ -1,3 +1,5 @@
 \bind_file cua
 \bind "C-S-K" "charstyle-insert code"
 \bind "C-S-V" "paste-external-selection"
+\bind "Tab" "depth-increment"
+\bind "C-S-D" "depth-decrement"

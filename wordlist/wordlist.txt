@@ -809,3 +809,13 @@ ASan's
 underflows
 ASan-generated
 gdb's
+asm
+ssize
+ksys
+pos
+-EBADF
+loff
+ppos
+vfs
+BTF
+dereferenced

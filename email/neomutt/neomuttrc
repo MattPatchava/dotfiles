@@ -10,6 +10,7 @@ set spoolfile = ~/Mail/INBOX
 set record = =Sent
 set postponed = =Drafts
 set copy = yes
+set mailcap_path = ~/.mailcap
 
 set sort = threads
 set sort_aux = reverse-last-date-received

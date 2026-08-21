@@ -1,0 +1,23 @@
+# $HOME/.mailcap
+#
+# Documents
+application/vnd.oasis.opendocument.text; /usr/bin/ooffice %s
+application/msword; /usr/bin/ooffice %s
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; /usr/bin/ooffice %s
+
+# PDF
+application/pdf; mupdf %s
+
+# Audio/Video
+audio/*; mpv %s
+video/*; mpv %s
+
+# Images
+image/png; imv %s
+image/jpeg; imv %s
+image/webp; imv %s
+image/*; imv %s
+
+# Plaintext
+text/plain; vi %s; needsterminal
+text/*; vi %s; needsterminal

@@ -18,7 +18,7 @@ Inbox ~/Mail/INBOX
 Channel posteo
 Far   :posteo-remote:
 Near  :posteo-local:
-Patterns *
+Patterns * !fsdevel
 Create Both
 Expunge Both
 SyncState *

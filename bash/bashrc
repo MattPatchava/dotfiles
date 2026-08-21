@@ -43,6 +43,7 @@ glow() {
     fi
 }
 
+alias clear='printf "\033[2J\033[3J\033[H"'
 command -v eza &>/dev/null && alias ls='eza'
 command -v eza &>/dev/null && alias ll='eza -lg --group-directories-first --sort=ext'
 
@@ -71,7 +72,7 @@ alias c=copy
 case $(hostname) in
     caitlinbarker-MacBookPro9-2)  HOST_COLOR='\[\e[38;5;198m\]' ;;    # Hot pink
     ferris)       HOST_COLOR='\[\e[1;38;5;28m\]' ;;                   # Sky blue
-    raspberrypi)  HOST_COLOR='\[\e[31m\]' ;;                          # Red
+    gopher)       HOST_COLOR='\[\e[1;38;5;25m\]' ;;                     # Royal blue
     t42)          HOST_COLOR='\[\e[38;5;30m\]' ;;                     # Dark teal
     gentoo)       HOST_COLOR='\[\e[38;5;93m\]' ;;                     # Deep purple
     tux)          HOST_COLOR='\[\e[38;5;93m\]' ;;                     # Deep purple
